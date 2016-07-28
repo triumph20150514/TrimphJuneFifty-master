@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.trimh.nuannuan.MainActivity">
+
+    <com.trimh.nuannuan.view.banner.BannerIndicator
+        android:id="@+id/simplebanner"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="200dp"></com.trimh.nuannuan.view.banner.BannerIndicator>
+
+
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/pull_Refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/picture_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+
+
+    <TextView
+        android:id="@+id/text"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+    <com.trimh.nuannuan.view.VerticalRollingTv
+        android:id="@+id/rollingTv"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+</LinearLayout>
