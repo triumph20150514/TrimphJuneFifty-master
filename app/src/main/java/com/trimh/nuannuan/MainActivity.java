@@ -30,7 +30,6 @@ import rx.Subscriber;
  */
 public class MainActivity extends BaseActivity {
 
-
     public RecyclerView recyclerView;
     public PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
     public PictureAdapter pictureAdapter;
