@@ -9,7 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/trimphmvp" />
+            <option value="$PROJECT_DIR$/trimph" />
+            <option value="$PROJECT_DIR$/trimphrxandroid" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

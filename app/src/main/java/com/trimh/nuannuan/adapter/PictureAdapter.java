@@ -37,6 +37,8 @@ public class PictureAdapter extends RecyclerView.Adapter {
 
     public void setTngouBeans(List<PictureBean.TngouBean> tngouBeans) {
         this.tngouBeans = tngouBeans;
+        int pos = getItemCount();
+        notifyItemRangeInserted(pos, tngouBeans.size());
     }
 
     public void appendTngonBeans(List<PictureBean.TngouBean> tngou) {
@@ -93,6 +95,12 @@ public class PictureAdapter extends RecyclerView.Adapter {
         return null;
     }
 
+
+    /**
+     * mei ren ti ni gui hua suoyoud quanbuzong huimimang mimang
+     * zzao zijizai zuoshenm cao cao
+     **/
+    /*zhi dao ziji yaozuoshenm gaizuosehnm gaiwang nage rangx tamei zenm mei  sil  aaaa*/
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 

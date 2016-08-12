@@ -4,6 +4,7 @@ import com.trimh.nuannuan.bean.MoviceBean;
 import com.trimh.nuannuan.bean.PictureBean;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.LoggingMXBean;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

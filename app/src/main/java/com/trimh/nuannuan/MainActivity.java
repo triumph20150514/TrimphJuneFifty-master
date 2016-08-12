@@ -57,13 +57,9 @@ public class MainActivity extends BaseActivity {
 //        simpleBanner = new BannerIndicator(this);
 
         simpleBanner.setIndicatorStyle(0);
-
         simpleBanner.setIndicatorSelectorRes(R.mipmap.ic_unselect, R.mipmap.ic_select);
-
         simpleBanner.setIndicatorCornerRadius(10);
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
 
         pullLoadMoreRecyclerView = (PullLoadMoreRecyclerView) findViewById(R.id.pull_Refresh);
 

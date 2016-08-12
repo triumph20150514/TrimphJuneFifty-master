@@ -11,7 +11,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.nodeprogress.nodeprogress.R;
+
+import com.trimh.nuannuan.R;
 
 import java.util.List;
 

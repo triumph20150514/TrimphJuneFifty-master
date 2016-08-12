@@ -25,7 +25,6 @@ public class LoadDialog extends AlertDialog {
         super(context);
         this.mContext = context;
         layoutInflater = LayoutInflater.from(context);
-
     }
 
     public void showDialog() {
@@ -36,10 +35,7 @@ public class LoadDialog extends AlertDialog {
         Window window = alertDialog.getWindow();
 
         View view = layoutInflater.inflate(R.layout.load_dialog_layout, null);
-     /*   SpinKitView spinKitView = (SpinKitView) view.findViewById(R.id.spinKitView);
-        Circle circle = new Circle();
-        circle.setColor(Color.RED);
-        spinKitView.setIndeterminateDrawable(circle);*/
+
         window.setContentView(view);
 
     }

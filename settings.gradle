@@ -1,1 +1,1 @@
-include ':app', ':trimphmvp'
+include ':app', ':trimph', ':trimphrxandroid'
