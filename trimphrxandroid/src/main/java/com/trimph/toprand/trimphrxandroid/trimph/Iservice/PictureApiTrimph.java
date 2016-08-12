@@ -1,6 +1,8 @@
 package com.trimph.toprand.trimphrxandroid.trimph.Iservice;
 
 
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.model.NewsCommenBean;
+
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
@@ -26,7 +28,7 @@ public interface PictureApiTrimph {
     Observable<PictureBean> getItems();
 
 
-
-
+    @GET("index")
+    Observable<NewsCommenBean> getNews(@Query("key") String key, @Query("type") String type);
 
 }

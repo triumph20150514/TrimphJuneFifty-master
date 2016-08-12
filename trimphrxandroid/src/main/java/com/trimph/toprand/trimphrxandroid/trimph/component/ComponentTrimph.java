@@ -3,6 +3,8 @@ package com.trimph.toprand.trimphrxandroid.trimph.component;
 
 import com.trimph.toprand.trimphrxandroid.MainActivity;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.mainfragment.model.PictureModelImpl;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.RequestManage;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.model.NewsGetModel;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenter;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.view.PictureViewImpl;
@@ -24,6 +26,8 @@ public interface ComponentTrimph {
     void inject(PicturePresenterImpl picturePresenter);
 
     void inject(PictureModelImpl pictureModel);
+
+    void inject(RequestManage requestManage);
 
 
 }

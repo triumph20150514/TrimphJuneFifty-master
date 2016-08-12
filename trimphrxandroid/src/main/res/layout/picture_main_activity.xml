@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"></android.support.v7.widget.Toolbar>
 
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </HorizontalScrollView>
+
     <FrameLayout
         android:id="@+id/frameContent"
         android:layout_width="match_parent"

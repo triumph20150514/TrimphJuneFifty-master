@@ -14,6 +14,7 @@ import com.trimph.toprand.trimphrxandroid.trimph.Iservice.PictureBean;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.mainfragment.MainFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.presenter.MainPresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.view.MainView;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.NewsFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.view.PictureViewImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.utils.ActivityUtils;
@@ -83,7 +84,7 @@ public class TrimphMainActivity extends FragmentActivity implements MainView {
 
     @Override
     public void switch2News() {
-        MainFragment mainFragment = new MainFragment();
+        NewsFragment mainFragment = new NewsFragment();
         ActivityUtils.swichFragment(getSupportFragmentManager(), R.id.frameContent, mainFragment);
     }
 

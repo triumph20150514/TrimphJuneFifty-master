@@ -7,8 +7,6 @@ import com.trimph.toprand.trimphrxandroid.trimph.utils.LogIntercepter;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import retrofit.GsonConverterFactory;
@@ -20,7 +18,7 @@ import retrofit.RxJavaCallAdapterFactory;
  */
 
 @Module
-public class AipModuleTrimph {
+public class AipModuleNewsTrimph {
 
     //天气
     public String BASE_WEALTHER_URL = "http://v.juhe.cn/weather/ip";

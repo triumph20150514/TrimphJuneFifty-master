@@ -27,6 +27,7 @@ public class PictureModelImpl implements IPictureModel<PictureBean> {
 
     public String TAG = PictureModelImpl.class.getSimpleName();
 
+
     public PictureModelImpl() {
         ////dddddddddd***********
         TrimphApplication.component().inject(this);

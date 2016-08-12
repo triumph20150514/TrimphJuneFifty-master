@@ -26,8 +26,9 @@ public class LogIntercepter implements Interceptor {
         Log.e(TAG, "------------chain----------");
         Request request = chain.request();
         Headers headers = request.headers();
+        request.httpUrl().queryParameterNames();
 
-        Log.e(TAG, "------------chain----------" + headers.name(0) + "   " );
+        Log.e(TAG, "------------chain----------" + headers.name(0) + "   request:" + request.toString());
         return chain.proceed(request);
     }
 }
