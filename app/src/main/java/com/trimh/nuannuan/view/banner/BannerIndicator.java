@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 import com.flyco.banner.widget.Banner.BaseIndicaorBanner;
 import com.trimh.nuannuan.R;
 import com.trimh.nuannuan.bean.PictureBean;
-import com.trimh.nuannuan.contantobj.ConstantObj;
+import com.trimh.nuannuan.utils.ConstantObj;
 import com.trimh.nuannuan.utils.LogUtlis;
 import com.trimh.nuannuan.view.indicator.RoundCornerIndicaor;
 

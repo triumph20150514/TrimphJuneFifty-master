@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.disklrucache.DiskLruCache;
 import com.trimh.nuannuan.R;
-import com.trimh.nuannuan.contantobj.ConstantObj;
 
 /**
  * @description: Project TrimphJuneFifty

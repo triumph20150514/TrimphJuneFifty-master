@@ -3,20 +3,15 @@ package com.trimh.nuannuan.view.banner;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.flyco.banner.transform.ZoomOutSlideTransformer;
 import com.flyco.banner.widget.Banner.base.BaseBanner;
 import com.trimh.nuannuan.R;
 import com.trimh.nuannuan.bean.PictureBean;
-import com.trimh.nuannuan.contantobj.ConstantObj;
+import com.trimh.nuannuan.utils.ConstantObj;
 import com.trimh.nuannuan.view.indicator.RoundCornerIndicaor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @description: banner

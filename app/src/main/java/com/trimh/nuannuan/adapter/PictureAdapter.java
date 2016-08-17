@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import com.trimh.nuannuan.R;
 import com.trimh.nuannuan.bean.PictureBean;
-import com.trimh.nuannuan.contantobj.ConstantObj;
+import com.trimh.nuannuan.utils.ConstantObj;
 
 import java.util.ArrayList;
 import java.util.List;

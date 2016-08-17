@@ -1,4 +1,4 @@
-package com.trimh.nuannuan.contantobj;
+package com.trimh.nuannuan.utils;
 
 /**
  * @description: Project TrimphJuneFifty

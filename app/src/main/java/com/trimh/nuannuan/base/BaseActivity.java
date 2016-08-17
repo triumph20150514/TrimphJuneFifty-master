@@ -27,7 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
-
     public void init() {
         initView();
         initData();
@@ -36,9 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void initData();
 
-
     protected abstract void initView();
-
 
     protected abstract void initListener();
 

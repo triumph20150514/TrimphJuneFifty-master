@@ -1,5 +1,6 @@
 package com.trimh.nuannuan.net;
 
+import com.trimh.nuannuan.Interceptor.LoggInterceptor;
 import com.trimh.nuannuan.bean.MoviceBean;
 import com.trimh.nuannuan.bean.PictureBean;
 
@@ -30,6 +31,8 @@ public class PictureApi {
         //手动创建一个OkHttpClient并设置超时时间
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        httpClientBuilder.addInterceptor(new LoggInterceptor());
+
 
         //jianli
         Retrofit retrofit = new Retrofit.Builder()

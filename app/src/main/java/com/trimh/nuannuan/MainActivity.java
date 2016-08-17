@@ -1,13 +1,17 @@
 package com.trimh.nuannuan;
 
 import android.graphics.Paint;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.animation.SlideInLeftAnimation;
 import com.flyco.banner.transform.ZoomOutSlideTransformer;
 import com.trimh.nuannuan.adapter.PictureAdapter;
@@ -19,6 +23,7 @@ import com.trimh.nuannuan.view.banner.SimpleBanner;
 import com.trimh.nuannuan.view.indicator.RoundCornerIndicaor;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
+import java.util.List;
 import java.util.Locale;
 
 import rx.Subscriber;
@@ -36,6 +41,7 @@ public class MainActivity extends BaseActivity {
     public int page;
     public boolean isRefresh = true;
     public BannerIndicator simpleBanner;
+    Toolbar toolbar;
 
     @Override
     protected void initData() {
@@ -45,7 +51,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         View bann = LayoutInflater.from(this).inflate(R.layout.banner_layout, null);
 
         simpleBanner = (BannerIndicator) bann.findViewById(R.id.banner);
@@ -53,7 +58,6 @@ public class MainActivity extends BaseActivity {
 //        if (simpleBanner != null) {
 //            simpleBanner.setTransformerClass(ZoomOutSlideTransformer.class);
 //        }
-
 //        simpleBanner = new BannerIndicator(this);
 
         simpleBanner.setIndicatorStyle(0);
@@ -63,13 +67,45 @@ public class MainActivity extends BaseActivity {
 
         pullLoadMoreRecyclerView = (PullLoadMoreRecyclerView) findViewById(R.id.pull_Refresh);
 
+        pullLoadMoreRecyclerView.setLinearLayout();
+
+
         if (pictureAdapter == null) {
             pictureAdapter = new PictureAdapter(MainActivity.this);
         }
+
+//        // Turn animation
+//        MyAdapter myAdapter=new MyAdapter();
+//
+//        myAdapter.openLoadAnimation();
+
         pictureAdapter.setHanderView(bann);
+
         recyclerView.setAdapter(pictureAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public class MyAdapter extends BaseQuickAdapter<PictureBean.TngouBean> {
+
+        public MyAdapter(int layoutResId, List<PictureBean.TngouBean> data) {
+            super(layoutResId, data);
+        }
+
+        public MyAdapter(View contentView, List<PictureBean.TngouBean> data) {
+            super(contentView, data);
+        }
+
+        public MyAdapter(List<PictureBean.TngouBean> data) {
+            super(data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder baseViewHolder, PictureBean.TngouBean tngouBean) {
+            baseViewHolder.setText(R.id.loading_text, tngouBean.getTitle());
+        }
+
+
     }
 
     @Override
@@ -128,7 +164,7 @@ public class MainActivity extends BaseActivity {
                 pictureAdapter.notifyDataSetChanged();
 
             }
-        }, page, 10);
+        }, page, 20);
 
     }
 

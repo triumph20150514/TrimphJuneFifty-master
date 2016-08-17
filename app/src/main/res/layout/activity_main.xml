@@ -6,18 +6,35 @@
     android:orientation="vertical"
     tools:context="com.trimh.nuannuan.MainActivity">
 
-    <com.trimh.nuannuan.view.banner.BannerIndicator
-        android:id="@+id/simplebanner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="200dp"></com.trimh.nuannuan.view.banner.BannerIndicator>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/text_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:text="弹出框框"
+            android:textColor="@color/nodeColor" />
+
+        <TextView
+            android:id="@+id/text_design"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:text="弹出框框" />
+
+    </LinearLayout>
 
     <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
         android:id="@+id/pull_Refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/picture_list"
@@ -27,19 +44,4 @@
         </android.support.v7.widget.RecyclerView>
 
     </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
-
-
-    <TextView
-        android:id="@+id/text"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <com.trimh.nuannuan.view.VerticalRollingTv
-        android:id="@+id/rollingTv"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
-
 </LinearLayout>
