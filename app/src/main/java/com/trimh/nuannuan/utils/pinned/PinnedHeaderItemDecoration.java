@@ -403,6 +403,7 @@ public class PinnedHeaderItemDecoration<T> extends RecyclerView.ItemDecoration {
                     mItemTouchListener.disableHeaderClick(mDisableHeaderClick);
                 }
                 // OnItemTouchListener.HEADER_ID代表是标签的Id
+                LogUtlis.e("trimph------------OnItemTouchListener.HEADER_ID" + OnItemTouchListener.HEADER_ID);
                 mItemTouchListener.setViewAndBounds(OnItemTouchListener.HEADER_ID, new ClickBounds(mLeft, mTop, mRight, mBottom));
                 if (mHeaderClickListener != null && mClickIds != null && mClickIds.length > 0) {
                     for (int mClickId : mClickIds) {

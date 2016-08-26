@@ -38,7 +38,6 @@ import butterknife.ButterKnife;
 
 public class NewsFragment extends Fragment implements NewsView {
 
-
     public PersenterView persenterView;
     public AlertDialog alertDialog;
 
@@ -46,6 +45,9 @@ public class NewsFragment extends Fragment implements NewsView {
     RecyclerView recyclerView;
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+
+    //新闻类型
+    public String different;
 
     public NewsAdapter pictureAdapter;
 
@@ -61,12 +63,7 @@ public class NewsFragment extends Fragment implements NewsView {
         ButterKnife.bind(this, view);
         init();
         persenterView = new PersenterViewImpl(this);
-        persenterView.getModelData(getContext(), resultNet, ContantsObj.news_key, "shehui");
-        try {
-            URLEncoder.encode("ssfe", "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        persenterView.getModelData(getContext(), resultNet, ContantsObj.news_key, different);
         return view;
     }
 
@@ -124,5 +121,12 @@ public class NewsFragment extends Fragment implements NewsView {
         this.persenterView = presenter;
     }
 
+    public String getDifferent() {
+        return different;
+    }
+
+    public void setDifferent(String different) {
+        this.different = different;
+    }
 
 }

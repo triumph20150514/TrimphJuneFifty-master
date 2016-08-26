@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrimphJuneFifty-master.iml" filepath="$PROJECT_DIR$/TrimphJuneFifty-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/greendaomodule/greendaomodule.iml" filepath="$PROJECT_DIR$/greendaomodule/greendaomodule.iml" />
       <module fileurl="file://$PROJECT_DIR$/trimph/trimph.iml" filepath="$PROJECT_DIR$/trimph/trimph.iml" />
       <module fileurl="file://$PROJECT_DIR$/trimphrxandroid/trimphrxandroid.iml" filepath="$PROJECT_DIR$/trimphrxandroid/trimphrxandroid.iml" />
     </modules>

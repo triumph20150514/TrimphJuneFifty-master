@@ -1,6 +1,7 @@
 package com.trimh.nuannuan.ui;
 
 import com.trimh.nuannuan.base.BaseActivity;
+import com.trimh.nuannuan.utils.copy.PinnedHeaderFixed;
 
 /**
  * @description: Project TrimphJuneFifty
@@ -17,7 +18,6 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
     }
 
     @Override

@@ -11,7 +11,6 @@ public class BaseBean implements Parcelable{
     public String reason; // 提示
     public int error_code; //错误码
 
-
     public String getReason() {
         return reason;
     }

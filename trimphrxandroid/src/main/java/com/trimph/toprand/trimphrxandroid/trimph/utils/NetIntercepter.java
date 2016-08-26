@@ -6,6 +6,7 @@ import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.squareup.okhttp.internal.Network;
 
 import java.io.IOException;
 
@@ -21,9 +22,6 @@ public class NetIntercepter implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Log.e(TAG, "------------chain----------");
         Request request = chain.request();
-        Headers headers = request.headers();
-
-        Log.e(TAG, "------------chain----------" + headers.name(0) + "   " );
         return chain.proceed(request);
     }
 }

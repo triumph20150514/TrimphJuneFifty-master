@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:padding="15dp"
             android:text="弹出框框"
-            android:textColor="@color/nodeColor" />
+            android:textColor="@color/nodeTextColor" />
 
         <TextView
             android:id="@+id/text_design"
@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="15dp"
-            android:text="弹出框框" />
+            android:text="弹出框框"
+            android:textColor="@color/nodeTextColor" />
 
     </LinearLayout>
 

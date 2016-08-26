@@ -3,6 +3,7 @@ package com.trimph.toprand.trimphrxandroid.trimph.ui.main;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +16,8 @@ import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.mainfragment.MainF
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.presenter.MainPresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.view.MainView;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.NewsFragment;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.adapter.DifferentNewsAdapter;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.newschild.DifferentNewsFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.view.PictureViewImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.utils.ActivityUtils;
@@ -26,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by tao on 2016/8/4.
  */
 
-public class TrimphMainActivity extends FragmentActivity implements MainView {
+public class TrimphMainActivity extends AppCompatActivity implements MainView {
 
 
     public String TAG = TrimphMainActivity.class.getSimpleName();
@@ -45,7 +48,11 @@ public class TrimphMainActivity extends FragmentActivity implements MainView {
         setContentView(R.layout.picture_main_activity);
         ButterKnife.bind(this);
         MainPresenterImpl mainPresenter = new MainPresenterImpl(this);
+
+        setSupportActionBar(toolbar);
         toolbar.setTitle("首页");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         switch2News();
     }
 
@@ -84,8 +91,8 @@ public class TrimphMainActivity extends FragmentActivity implements MainView {
 
     @Override
     public void switch2News() {
-        NewsFragment mainFragment = new NewsFragment();
-        ActivityUtils.swichFragment(getSupportFragmentManager(), R.id.frameContent, mainFragment);
+        DifferentNewsFragment differentNewsFragment = new DifferentNewsFragment();
+        ActivityUtils.swichFragment(getSupportFragmentManager(), R.id.frameContent, differentNewsFragment);
     }
 
     @Override

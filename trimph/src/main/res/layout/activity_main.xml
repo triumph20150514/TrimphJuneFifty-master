@@ -9,16 +9,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <com.trimh.trimphmvp.load.FloxLoadView
+        android:id="@+id/floxLoadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+
     <ScrollView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
         <com.trimh.trimphmvp.copy.NodeProgressView
             android:id="@+id/npv_NodeProgressView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </ScrollView>
 </RelativeLayout>

@@ -1,1 +1,1 @@
-include ':app', ':trimph', ':trimphrxandroid'
+include ':app', ':trimph', ':trimphrxandroid', ':greendaomodule'

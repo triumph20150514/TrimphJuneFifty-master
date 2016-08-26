@@ -12,7 +12,8 @@ public class NewsBean {
      * stat : 1
      * data : [{"title":"对口援疆情暖巴州 河北与新疆人民永远心连心",
      * "date":"2016-08-12 13:13","category":"社会",
-     * "author_name":"长城网","thumbnail_pic_s":"http://09.imgmini.eastday.com/mobile/20160812/20160812131345_27e509b748b9121edaa6d2aa7fc6a0e5_1_mwpm_03200403.jpeg","url":"http://mini.eastday.com/mobile/160812131345851.html?qid=juheshuju",
+     * "author_name":"长城网","thumbnail_pic_s":"http://09.imgmini.eastday.com/mobile/20160812/20160812131345_27e509b748b9121edaa6d2aa7fc6a0e5_1_mwpm_03200403.jpeg",
+     * "url":"http://mini.eastday.com/mobile/160812131345851.html?qid=juheshuju",
      * "thumbnail_pic_s03":"http://09.imgmini.eastday.com/mobile/20160812/20160812131345_27e509b748b9121edaa6d2aa7fc6a0e5_1_mwpl_05500201.jpeg"}]
      */
 

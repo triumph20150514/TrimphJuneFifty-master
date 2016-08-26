@@ -29,7 +29,6 @@ public class PictureModelImpl implements IPictureModel<PictureBean> {
 
 
     public PictureModelImpl() {
-        ////dddddddddd***********
         TrimphApplication.component().inject(this);
     }
 
@@ -44,7 +43,6 @@ public class PictureModelImpl implements IPictureModel<PictureBean> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<PictureBean>() {
-
                     @Override
                     public void onCompleted() {
                         Log.e(TAG, "onCompleted");

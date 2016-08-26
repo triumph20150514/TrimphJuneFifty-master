@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Region;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.trimh.nuannuan.R;
 import com.trimh.nuannuan.utils.LogUtlis;
+import com.trimh.nuannuan.utils.pinned.callback.OnHeaderClickListener;
+import com.trimh.nuannuan.utils.pinned.callback.OnItemTouchListener;
 import com.trimh.nuannuan.utils.pinned.callback.PinnedHeaderNotifyer;
+import com.trimh.nuannuan.utils.pinned.entity.ClickBounds;
 
 /**
  * 自定义 recycleView头部固定不动
  * Created by tao on 2016/8/17.
  */
 
-public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
+public class PinnedHeaderFixed<T> extends RecyclerView.ItemDecoration {
 
 
     //j*分割线
@@ -30,14 +35,25 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
     public Paint paint = new Paint();
     public int mPinnedHeaderPosition = -1;//初始值
 
-    public PinnedHeaderFixed() {
-        super();
+    public OnItemTouchListener<T> onItemTouchListener;
+    public OnHeaderClickListener<T> onHeaderClickListener;
 
+    public int[] clickIds;
+
+    private PinnedHeaderFixed(Builder<T> b) {
+        this.clickIds = b.clickIds;
+        this.onItemTouchListener = b.onItemTouchLisener;
+        this.onHeaderClickListener = b.onHeaderClickListerner;
+        init();
+    }
+
+    public void init() {
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
-
-
     }
+
+    // 用于锁定画布绘制范围
+    private Rect mClipBounds;
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
@@ -45,9 +61,47 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
 
         createTag(c, parent);
 
+        /**
+         * 固定头部的位置
+         */
 
+        if (mPinnedHanderView != null) {
+            mClipBounds = c.getClipBounds();
+
+            //获取顶部所处的位置
+            int heandEnd = mPinnedHanderView.getTop() + mPinnedHanderView.getHeight();
+
+            //根据标签所处的位置 获取下面的view
+            View belowView = parent.findChildViewUnder(c.getWidth() / 2, heandEnd + 1);
+
+            //判断是否为标签 若是便签 就和缓存的标签同步移动
+            if (ifPinnedHeander(parent, belowView)) {
+                //计算偏移量
+                mPinnedHeaderOffset = belowView.getTop() - (mPinnedHanderView.getHeight() + mHeaderTopMargin + mRecyclerViewPaddingTop);
+
+                /// 从 mPinnedHanderView.getHeight()---》0
+                mClipBounds.top = belowView.getTop();
+            } else {
+                mPinnedHeaderOffset = 0;
+                mClipBounds.top = mRecyclerViewPaddingTop + mHeaderTopMargin + mPinnedHanderView.getHeight();
+            }
+            c.getClipBounds(mClipBounds);
+        }
+
+        /**
+         *
+         */
         drawDivider(c, parent);
 
+    }
+
+    private boolean ifPinnedHeander(RecyclerView parent, View belowView) {
+        int position = parent.getChildAdapterPosition(belowView);
+        if (position == RecyclerView.NO_POSITION) {
+            return false;
+        }
+        int type = adapter.getItemViewType(position);
+        return isHanderType(type);
     }
 
     /**
@@ -60,10 +114,11 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
         int count = parent.getChildCount();
         int left = maginSize;
         int right = parent.getMeasuredWidth() - maginSize;
-        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) parent.getLayoutParams();
+
         for (int i = 0; i < count; i++) {
             View view = parent.getChildAt(i);
             //画一个矩形
+//            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) view.getLayoutParams();
             Rect rect = new Rect();
             rect.left = left;
             rect.right = right;
@@ -143,18 +198,41 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
             //强制测绘
             mPinnedHanderView.measure(widthSpc, heightSpc);
 
-            //强制布局顶部
             mLeft = mRecyclerViewPaddingLeft + mHeaderLeftMargin;
-            mRight = mPinnedHanderView.getMeasuredWidth() + mRecyclerViewPaddingRight + mHeaderRightMargin;
-            mBottom = mPinnedHanderView.getMeasuredHeight() + mRecyclerViewPaddingBottom + mHeaderBottomMargin;
             mTop = mRecyclerViewPaddingTop + mHeaderTopMargin;
+            mRight = mPinnedHanderView.getMeasuredWidth() + mRecyclerViewPaddingLeft + mHeaderLeftMargin + mHeaderRightMargin;
+            mBottom = mPinnedHanderView.getMeasuredHeight() + mRecyclerViewPaddingTop + mHeaderTopMargin + mHeaderBottomMargin;
+            //强制布局顶部
+//            mLeft = mRecyclerViewPaddingLeft + mHeaderLeftMargin;
+//            mRight = mPinnedHanderView.getMeasuredWidth() + mRecyclerViewPaddingRight + mHeaderRightMargin;
+//            mBottom = mPinnedHanderView.getMeasuredHeight() + mRecyclerViewPaddingBottom + mHeaderBottomMargin;
+//            mTop = mRecyclerViewPaddingTop + mHeaderTopMargin;
+
             mPinnedHanderView.layout(mLeft, mTop, mRight, mBottom);
 
+            /***
+             * 条目点击事件添加
+             */
+            if (onItemTouchListener == null) {
+                onItemTouchListener = new OnItemTouchListener<>(parent.getContext());
+                parent.addOnItemTouchListener(onItemTouchListener);
 
+                if (onHeaderClickListener != null) {
+                    onItemTouchListener.setHeaderClickListener(onHeaderClickListener);
+                }
 
+                //固定标签的点击范围
+                onItemTouchListener.setViewAndBounds(OnItemTouchListener.HEADER_ID,
+                        new ClickBounds(mLeft, mTop, mRight, mBottom));
 
+                if (onHeaderClickListener != null && clickIds.length > 0) {
+                    for (int ids : clickIds) {
+                        View view = mPinnedHanderView.findViewById(ids);
+                        onItemTouchListener.setViewAndBounds(ids, new ClickBounds(view.getLeft(), view.getTop(), view.getRight(), view.getBottom()));
+                    }
+                }
 
-
+            }
 
         }
 
@@ -162,6 +240,7 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
 
 
     View mPinnedHanderView;
+    public int mPinnedHeaderOffset;//偏移量
     int mLeft, mRight, mBottom, mTop;
     int mHeaderLeftMargin, mHeaderTopMargin, mHeaderRightMargin, mHeaderBottomMargin;
     int mRecyclerViewPaddingLeft, mRecyclerViewPaddingRight, mRecyclerViewPaddingTop, mRecyclerViewPaddingBottom;
@@ -181,6 +260,12 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
         return 0;
     }
 
+    /**
+     * 判断条目是不是标签
+     *
+     * @param type
+     * @return
+     */
     public boolean isHanderType(int type) {
         PinnedHeaderNotifyer p = (PinnedHeaderNotifyer) adapter;
         return p.isPinnedHeaderType(type);
@@ -197,6 +282,16 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
+
+        if (mPinnedHanderView != null) {
+            c.save();
+        }
+
+        mClipBounds.top = mRecyclerViewPaddingTop + mHeaderTopMargin;
+
+        c.clipRect(mClipBounds, Region.Op.UNION);
+        c.translate(mHeaderLeftMargin + mRecyclerViewPaddingLeft, mPinnedHeaderOffset + mHeaderTopMargin);
+        mPinnedHanderView.draw(c);
     }
 
     /**
@@ -224,6 +319,45 @@ public class PinnedHeaderFixed extends RecyclerView.ItemDecoration {
 
         }
     }
+
+
+    /***
+     * 创建Builder
+     *
+     * @param <T>
+     */
+    public static class Builder<T> {
+        // 需要添加点击时间的Id
+        public int[] clickIds;
+
+        public OnHeaderClickListener<T> onHeaderClickListerner;
+        public OnItemTouchListener<T> onItemTouchLisener;
+
+        public Builder() {
+
+        }
+
+        public Builder<T> addClickIds(int... clickids) {
+            this.clickIds = clickids;
+            return this;
+        }
+
+        public Builder<T> setHeaderClickListener(OnHeaderClickListener<T> o) {
+            this.onHeaderClickListerner = o;
+            return this;
+        }
+
+        public Builder<T> setItemClickListener(OnItemTouchListener<T> onItemTouchLisener) {
+            this.onItemTouchLisener = onItemTouchLisener;
+            return this;
+        }
+
+        public PinnedHeaderFixed<T> create() {
+            return new PinnedHeaderFixed<T>(this);
+        }
+
+    }
+
 
     public RecyclerView.Adapter adapter;
 

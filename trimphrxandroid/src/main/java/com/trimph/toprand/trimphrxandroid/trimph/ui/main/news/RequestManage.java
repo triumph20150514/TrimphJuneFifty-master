@@ -15,6 +15,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
+ * 请求管理类
  * Created by tao on 2016/8/12.
  */
 

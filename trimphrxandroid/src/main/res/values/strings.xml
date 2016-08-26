@@ -1,7 +1,43 @@
 <resources>
-    <string name="app_name">TrimphRxAndroid</string>
+    <string name="app_name">TrimphNews</string>
     <string name="navigation_news">新闻</string>
     <string name="navigation_images">图片</string>
     <string name="navigation_weather">天气</string>
     <string name="navigation_about">关于</string>
+    <string name="new_title_shehui">社会</string>
+
+    <!--//guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)-->
+    <string-array name="different_news">
+        <item>头条</item>
+        <item>国内</item>
+        <item>国际</item>
+        <item>娱乐</item>
+        <item>体育</item>
+        <item>军事</item>
+        <item>科技</item>
+        <item>财经</item>
+        <item>时尚</item>
+    </string-array>
+
+ <!--   "top";
+    public static String shehui = "shehui";
+    public static String guonei = "guonei";
+    public static String guoji = "guoji";
+    public static String yule = "yule";
+    public static String tiyu = "tiyu";
+    public static String keji = "keji";
+    public static String caijing = "caijing";
+    public static String shishang = "shishang";
+-->
+    <string-array name="different_news_pinyin">
+        <item>top</item>
+        <item>guonei</item>
+        <item>guoji</item>
+        <item>yule</item>
+        <item>tiyu</item>
+        <item>junshi</item>
+        <item>keji</item>
+        <item>caijing</item>
+        <item>shishang</item>
+    </string-array>
 </resources>

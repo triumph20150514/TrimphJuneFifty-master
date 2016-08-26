@@ -30,7 +30,6 @@ import butterknife.ButterKnife;
 
 public class MainFragment extends Fragment implements IPictureView {
 
-
     public IPicturePresenter iPicturePresenter;
     public AlertDialog alertDialog;
 

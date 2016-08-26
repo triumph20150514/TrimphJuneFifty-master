@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.trimh.nuannuan.R;
 import com.trimh.nuannuan.ui.pineed.adapter.StockAdapter;
 import com.trimh.nuannuan.ui.pineed.entitiy.StockEntity;
+import com.trimh.nuannuan.utils.copy.PinnedHeaderFixed;
 import com.trimh.nuannuan.utils.pinned.PinnedHeaderItemDecoration;
 import com.trimh.nuannuan.utils.pinned.callback.OnHeaderClickAdapter;
 
@@ -63,13 +64,20 @@ public class StockActivity extends AppCompatActivity {
 
                 };
 
-                mRecyclerView.addItemDecoration(
-                        new PinnedHeaderItemDecoration.Builder<StockEntity.StockInfo>()
-                                .setDividerId(R.drawable.divider)
-                                .enableDivider(true)
-                                .setClickIds(R.id.iv_more, R.id.fl)
-                                .disableHeaderClick(true)
-                                .setHeaderClickListener(clickAdapter).create());
+                mRecyclerView.addItemDecoration(new PinnedHeaderFixed.
+                        Builder<StockEntity.StockInfo>()
+//                        .addClickIds(R.id.iv_more, R.id.fl).setHeaderClickListener(clickAdapter)
+                        .create()
+                );
+
+//                mRecyclerView.addItemDecoration(
+//                        new PinnedHeaderItemDecoration.Builder<StockEntity.StockInfo>()
+//                                .setDividerId(R.drawable.divider)
+//                                .enableDivider(true)
+//                                .setClickIds(R.id.iv_more, R.id.fl)
+//                                .disableHeaderClick(true)
+//                                .setHeaderClickListener(clickAdapter).create());
+//
 
             }
 

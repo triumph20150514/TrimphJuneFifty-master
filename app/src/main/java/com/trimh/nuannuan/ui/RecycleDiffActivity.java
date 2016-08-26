@@ -83,6 +83,7 @@ public class RecycleDiffActivity extends BaseActivity {
         recycleSection = new RecycleSectionQuickAdapter(R.layout.activity_picture_item, R.layout.section_layout, section);
 
         recyclerView.setAdapter(recycleAdapter);
+
         pullLoadMoreRecyclerView.setEmptyView(LayoutInflater.from(this).inflate(R.layout.empty_layout, null));
 
         ItemDragAndSwipeCallback itemDragAndSwipeCallback = new ItemDragAndSwipeCallback(recycleAdapter);
@@ -92,6 +93,7 @@ public class RecycleDiffActivity extends BaseActivity {
         // enable drag items
         recycleAdapter.enableDragItem(itemTouchHelper, R.id.picture_title, true);
         recycleAdapter.setOnItemDragListener(onItemDragListerner);
+
         // enable swipe items
         recycleAdapter.enableSwipeItem();
         recycleAdapter.setOnItemSwipeListener(onItemSwipeListener);
@@ -99,11 +101,7 @@ public class RecycleDiffActivity extends BaseActivity {
 
     }
 
-    //    public static final int ALPHAIN = 1;
-//    public static final int SCALEIN = 2;
-//    public static final int SLIDEIN_BOTTOM = 3;
-//    public static final int SLIDEIN_LEFT = 4;
-//    public static final int SLIDEIN_RIGHT = 5;
+
     public void animationDialog() {
         new AlertDialog.Builder(this).setItems(new String[]{"ALPHAIN", "SCALEIN", "SLIDEIN_BOTTOM", "SLIDEIN_LEFT", "SLIDEIN_RIGHT", "sfsf"}, new DialogInterface.OnClickListener() {
             @Override
@@ -148,8 +146,8 @@ public class RecycleDiffActivity extends BaseActivity {
                             @Override
                             public Animator[] getAnimators(View view) {
                                 return new Animator[]{
-                                        ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1),
-                                        ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1)
+                                        ObjectAnimator.ofFloat(view, "scaleY", 1, 0.6f, 1),
+                                        ObjectAnimator.ofFloat(view, "scaleX", 1, 0.6f, 1)
                                 };
                             }
                         });
