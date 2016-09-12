@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="nodeColor">#cccccc</color>
+    <color name="nodeTextColor">#00bcb4</color>
+    <color name="spint_whihe">#7fFFFFFF</color>
+    <color name="theme_bg_color">#3C4C48</color>
+
+    <color name="tab_color_no_check">#495B56</color>
+    <color name="tab_color_check">#7fF00081</color>
+    <!--<color name="toor_bg">#7f56635F</color>-->
+    <color name="toor_bg">#ff676767</color>
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/differentGroup">
+        <item
+            android:id="@+id/news_show"
+            android:checkable="true"
+            android:icon="@mipmap/look"
+            android:showAsAction="never"
+            android:title="新闻" />
+        <item
+            android:id="@+id/news_show1"
+            android:checkable="true"
+            android:icon="@mipmap/look"
+            android:showAsAction="never"
+            android:title="新闻" />
+        <item
+            android:id="@+id/news_show2"
+            android:checkable="true"
+            android:icon="@mipmap/look"
+            android:showAsAction="never"
+            android:title="新闻" />
+        <item
+            android:id="@+id/news_show3"
+            android:checkable="true"
+            android:icon="@mipmap/look"
+            android:showAsAction="never"
+            android:title="新闻" />
+
+    </group>
+
+</menu>

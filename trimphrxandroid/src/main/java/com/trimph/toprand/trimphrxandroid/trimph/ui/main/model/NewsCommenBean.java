@@ -27,4 +27,29 @@ public class NewsCommenBean extends BaseBean implements Parcelable {
         return 0;
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeParcelable(this.result, flags);
+    }
+
+    public NewsCommenBean() {
+    }
+
+    protected NewsCommenBean(Parcel in) {
+        super(in);
+        this.result = in.readParcelable(NewsBean.class.getClassLoader());
+    }
+
+    public static final Creator<NewsCommenBean> CREATOR = new Creator<NewsCommenBean>() {
+        @Override
+        public NewsCommenBean createFromParcel(Parcel source) {
+            return new NewsCommenBean(source);
+        }
+
+        @Override
+        public NewsCommenBean[] newArray(int size) {
+            return new NewsCommenBean[size];
+        }
+    };
 }

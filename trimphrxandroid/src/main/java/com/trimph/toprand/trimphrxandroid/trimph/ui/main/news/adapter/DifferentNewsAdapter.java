@@ -3,7 +3,9 @@ package com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.adapter;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
  * Created by tao on 2016/8/26.
  */
 
-public class DifferentNewsAdapter extends FragmentStatePagerAdapter {
+public class DifferentNewsAdapter extends FragmentPagerAdapter {
 
     public List<Fragment> fragmentList = new ArrayList<>();
     public List<String> titles = new ArrayList<>();
@@ -22,6 +24,7 @@ public class DifferentNewsAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.context = context;
     }
+
 
     @Override
     public Fragment getItem(int position) {
@@ -40,6 +43,7 @@ public class DifferentNewsAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
+                Log.e("trimph", "titles titles----------" + titles.get(position));
                 return titles.get(position);
             case 1:
                 return titles.get(position);
@@ -69,6 +73,7 @@ public class DifferentNewsAdapter extends FragmentStatePagerAdapter {
 
     public void setTitles(List<String> titles) {
         this.titles = titles;
+        notifyDataSetChanged();
     }
 
     public List<Fragment> getFragmentList() {

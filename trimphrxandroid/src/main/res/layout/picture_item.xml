@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contanit"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="120dp"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="fhyhyhyfhy"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/news_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="2015.05.10"
+           />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/news_iv"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </LinearLayout>

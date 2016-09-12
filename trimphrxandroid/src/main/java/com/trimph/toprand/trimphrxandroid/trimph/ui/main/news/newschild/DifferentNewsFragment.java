@@ -1,28 +1,20 @@
 package com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.newschild;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
-import com.astuetz.PagerSlidingTabStrip;
-import com.google.common.collect.Collections2;
 import com.trimph.toprand.trimphrxandroid.R;
-import com.trimph.toprand.trimphrxandroid.trimph.Contants.ContantsObj;
 import com.trimph.toprand.trimphrxandroid.trimph.base.BaseFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.NewsFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.adapter.DifferentNewsAdapter;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.view.PagerSlidingTabStrip;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 新闻类
@@ -31,8 +23,8 @@ import butterknife.ButterKnife;
 
 public class DifferentNewsFragment extends BaseFragment {
 
-    //    @Bind(R.id.PagerTitle)
-//    PagerTitleStrip pagerSlidingTabStrip;
+    @Bind(R.id.PagerTitle)
+    PagerSlidingTabStrip pagerSlidingTabStrip;
     @Bind(R.id.viewPager)
     ViewPager viewPager;
     public List<Fragment> fragmentList = new ArrayList<>();
@@ -51,12 +43,12 @@ public class DifferentNewsFragment extends BaseFragment {
         differentNewsAdapter = new DifferentNewsAdapter(this.getContext(), getActivity().getSupportFragmentManager());
         viewPager.setAdapter(differentNewsAdapter);
 
-//        pagerSlidingTabStrip.setViewPager(viewPager);
-
         initFragmnet();
         differentNewsAdapter.setFragmentList(fragmentList);
         differentNewsAdapter.setTitles(titles);
+        Log.e("trimph", "titles----------" + titles.toString());
         differentNewsAdapter.notifyDataSetChanged();
+        pagerSlidingTabStrip.setViewPager(viewPager);
     }
 
     public void initFragmnet() {
@@ -65,7 +57,6 @@ public class DifferentNewsFragment extends BaseFragment {
 
         String[] pinyin = context.getResources().getStringArray(R.array.different_news_pinyin);
 //        Collections.addAll(pinyins, pinyin);
-
         for (int i = 0; i < strings.length; i++) {
             NewsFragment newsFragment = new NewsFragment();
             newsFragment.setDifferent(pinyin[i]);

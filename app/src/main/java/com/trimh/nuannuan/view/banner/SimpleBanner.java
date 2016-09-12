@@ -20,9 +20,7 @@ import com.trimh.nuannuan.view.indicator.RoundCornerIndicaor;
  */
 public class SimpleBanner extends BaseBanner<PictureBean.TngouBean, SimpleBanner> {
 
-
     public Context mContext;
-
 
     public SimpleBanner(Context context) {
         this(context, null);

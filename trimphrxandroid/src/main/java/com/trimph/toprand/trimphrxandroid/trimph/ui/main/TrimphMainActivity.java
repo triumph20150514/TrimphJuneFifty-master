@@ -1,22 +1,22 @@
 package com.trimph.toprand.trimphrxandroid.trimph.ui.main;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.trimph.toprand.trimphrxandroid.R;
 import com.trimph.toprand.trimphrxandroid.trimph.Iservice.PictureBean;
-import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.mainfragment.MainFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.presenter.MainPresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.view.MainView;
-import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.NewsFragment;
-import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.adapter.DifferentNewsAdapter;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.newschild.DifferentNewsFragment;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.view.PictureViewImpl;
@@ -41,6 +41,10 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
     FrameLayout frameContent;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.navigation)
+    NavigationView navigation;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,15 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
 
         setSupportActionBar(toolbar);
         toolbar.setTitle("首页");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+
+                return false;
+            }
+        });
 
         switch2News();
     }
@@ -88,21 +100,27 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
         alertDialog.show();
     }
 
-
     @Override
     public void switch2News() {
+//        drawerLayout.openDrawer(GravityCompat.END);
         DifferentNewsFragment differentNewsFragment = new DifferentNewsFragment();
         ActivityUtils.swichFragment(getSupportFragmentManager(), R.id.frameContent, differentNewsFragment);
     }
 
     @Override
     public void switch2Images() {
-
+        /**
+         * 夜间
+         */
+        setTheme(R.style.NightTheme);
     }
 
     @Override
     public void switch2Weather() {
-
+        /**
+         * 日间
+         */
+        setTheme(R.style.DayTheme);
     }
 
     @Override

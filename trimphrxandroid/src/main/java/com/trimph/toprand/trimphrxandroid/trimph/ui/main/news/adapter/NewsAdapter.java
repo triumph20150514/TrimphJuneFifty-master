@@ -5,10 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.trimph.toprand.trimphrxandroid.R;
-import com.trimph.toprand.trimphrxandroid.trimph.Iservice.PictureBean;
+import com.trimph.toprand.trimphrxandroid.trimph.ui.main.click.OnItemClickListener;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.model.NewsBean;
 
 import java.util.ArrayList;
@@ -24,32 +27,37 @@ import butterknife.ButterKnife;
  */
 public class NewsAdapter extends RecyclerView.Adapter {
 
-    public List<NewsBean.DataBean> tngouBeans = new ArrayList<>();
+    public List<NewsBean.DataBean> dataBeen = new ArrayList<>();
 
     public Context context;
 
     public LayoutInflater layoutInflater;
 
+    public OnItemClickListener<NewsBean.DataBean> dataBeanOnItemClickListener;
 
     public List<NewsBean.DataBean> getTngouBeans() {
-        return tngouBeans;
+        return dataBeen;
+    }
+
+    public void setDataBeanOnItemClickListener(OnItemClickListener<NewsBean.DataBean> dataBeanOnItemClickListener) {
+        this.dataBeanOnItemClickListener = dataBeanOnItemClickListener;
     }
 
     public void setTngouBeans(List<NewsBean.DataBean> tngouBeans) {
         if (tngouBeans == null) {
             return;
         }
-        this.tngouBeans = tngouBeans;
-        int pos = getItemCount();
-        notifyItemRangeInserted(pos, tngouBeans.size());
+        this.dataBeen = tngouBeans;
+//        int pos = getItemCount();
+//        notifyItemRangeInserted(pos, tngouBeans.size());
     }
 
     public void appendTngonBeans(List<NewsBean.DataBean> tngou) {
         if (tngou != null) {
-            if (tngouBeans != null) {
-                tngouBeans.addAll(tngou);
+            if (dataBeen != null) {
+                dataBeen.addAll(tngou);
             } else {
-                this.tngouBeans = tngou;
+                this.dataBeen = tngou;
             }
         }
     }
@@ -74,19 +82,36 @@ public class NewsAdapter extends RecyclerView.Adapter {
     /*zhi dao ziji yaozuoshenm gaizuosehnm gaiwang nage rangx tamei zenm mei  sil  aaaa*/
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (tngouBeans == null) {
+        if (dataBeen == null) {
             return;
         }
+        NewsBean.DataBean newsBean = dataBeen.get(position);
+
         PictureHolder pictureHolder = (PictureHolder) holder;
-        pictureHolder.tv.setText(tngouBeans.get(position).getTitle());
+        pictureHolder.tv.setText(newsBean.getTitle());
+        pictureHolder.newsDate.setText(newsBean.getDate());
+
+        Glide.with(context).load(newsBean.getThumbnail_pic_s())
+                .error(R.mipmap.ic_launcher)
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher)
+                .into(pictureHolder.newsIv);
+        pictureHolder.contanit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dataBeanOnItemClickListener != null) {
+                    dataBeanOnItemClickListener.onItemClick(position, v, newsBean);
+                }
+            }
+        });
     }
 
 
     @Override
     public int getItemCount() {
-        if (tngouBeans != null) {
-            if (tngouBeans.size() > 0) {
-                return tngouBeans.size();
+        if (dataBeen != null) {
+            if (dataBeen.size() > 0) {
+                return dataBeen.size();
             } else {
                 return 0;
             }
@@ -95,11 +120,16 @@ public class NewsAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     public class PictureHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv)
         TextView tv;
+        @Bind(R.id.news_date)
+        TextView newsDate;
+        @Bind(R.id.news_iv)
+        ImageView newsIv;
+        @Bind(R.id.contanit)
+        LinearLayout contanit;
 
         public PictureHolder(View itemView) {
             super(itemView);

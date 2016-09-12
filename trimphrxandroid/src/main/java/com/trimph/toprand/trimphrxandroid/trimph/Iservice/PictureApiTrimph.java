@@ -32,4 +32,5 @@ public interface PictureApiTrimph {
     Observable<NewsCommenBean> getNews(@Query("key") String key, @Query("type") String type);
 
 
+
 }
