@@ -2,13 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".main.widget.MainActivity">
+
     <group>
         <item
             android:id="@+id/navigation_item_news"
             android:checked="true"
             android:icon="@mipmap/ic_assessment_white_24dp"
-            android:showAsAction="always"
-            android:title="@string/navigation_news" />
+            android:showAsAction="ifRoom"
+          />
         <item
             android:id="@+id/navigation_item_images"
             android:icon="@mipmap/ic_image_white_24dp"
@@ -20,9 +21,17 @@
             android:showAsAction="never"
             android:title="@string/navigation_weather" />
         <item
+            android:id="@+id/navigation_item_setting"
+            android:icon="@mipmap/ic_date_range_white_24dp"
+            android:showAsAction="never"
+            android:title="@string/navigation_setting" />
+        <item
             android:id="@+id/navigation_item_about"
             android:icon="@mipmap/ic_portrait_white_24dp"
             android:showAsAction="never"
             android:title="@string/navigation_about" />
     </group>
+
+
+
 </menu>

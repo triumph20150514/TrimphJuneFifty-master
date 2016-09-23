@@ -2,17 +2,19 @@ package com.trimph.toprand.trimphrxandroid.trimph.ui.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.FrameLayout;
 
+import com.jaeger.library.StatusBarUtil;
 import com.trimph.toprand.trimphrxandroid.R;
 import com.trimph.toprand.trimphrxandroid.trimph.Iservice.PictureBean;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.main.presenter.MainPresenterImpl;
@@ -21,6 +23,9 @@ import com.trimph.toprand.trimphrxandroid.trimph.ui.main.news.newschild.Differen
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.presenter.PicturePresenterImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.ui.main.view.PictureViewImpl;
 import com.trimph.toprand.trimphrxandroid.trimph.utils.ActivityUtils;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,14 +54,20 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.picture_main_activity);
         ButterKnife.bind(this);
         MainPresenterImpl mainPresenter = new MainPresenterImpl(this);
-
+        setStatusBarColor();
+        MIUISetStatusBarLightMode(getWindow(),true);
         setSupportActionBar(toolbar);
         toolbar.setTitle("首页");
+//        toolbar.inflateMenu(R.menu.my_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        /**
+         *
+         */
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -84,10 +95,14 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
         return true;
     }
 
+    public void setStatusBarColor() {
+        StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, getResources().getColor(R.color.nodeColor));
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorAccent), 120);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation_menu, menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
         return true;
     }
 
@@ -126,5 +141,36 @@ public class TrimphMainActivity extends AppCompatActivity implements MainView {
     @Override
     public void switch2About() {
 
+    }
+
+
+    /**
+     * 设置状态栏字体图标为深色，需要MIUIV6以上
+     * @param window 需要设置的窗口
+     * @param dark 是否把状态栏字体及图标颜色设置为深色
+     * @return  boolean 成功执行返回true
+     *
+     */
+    public static boolean MIUISetStatusBarLightMode(Window window, boolean dark) {
+        boolean result = false;
+        if (window != null) {
+            Class clazz = window.getClass();
+            try {
+                int darkModeFlag = 0;
+                Class layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+                Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
+                darkModeFlag = field.getInt(layoutParams);
+                Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
+                if(dark){
+                    extraFlagField.invoke(window,darkModeFlag,darkModeFlag);//状态栏透明且黑色字体
+                }else{
+                    extraFlagField.invoke(window, 0, darkModeFlag);//清除黑色字体
+                }
+                result=true;
+            }catch (Exception e){
+
+            }
+        }
+        return result;
     }
 }

@@ -78,6 +78,7 @@ public class NewsFragment extends Fragment implements NewsView {
     }
 
 
+
     private void init() {
         pictureAdapter = new NewsAdapter(getContext());
         recyclerView.setAdapter(pictureAdapter);
@@ -99,7 +100,6 @@ public class NewsFragment extends Fragment implements NewsView {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 //通过recyclerView滑动状态
-
                 Log.e("Trimph", "v.getTop()" + v.getTop());
                 Log.e("Trimph", "scrollY" + scrollY + " oldScrollY" + oldScrollY);
                 if (scrollY - oldScrollY > 5) {

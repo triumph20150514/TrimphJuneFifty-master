@@ -32,7 +32,6 @@ public class DifferentNewsFragment extends BaseFragment {
     public List<String> pinyins = new ArrayList<>();
     public DifferentNewsAdapter differentNewsAdapter;
 
-
     @Override
     protected int layoutResId() {
         return R.layout.new_main_fragmnet;

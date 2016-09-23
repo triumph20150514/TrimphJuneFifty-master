@@ -96,6 +96,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .into(pictureHolder.newsIv);
+
         pictureHolder.contanit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +105,17 @@ public class NewsAdapter extends RecyclerView.Adapter {
                 }
             }
         });
+        /**
+         * 图片点击事件
+         */
+        pictureHolder.newsIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
 

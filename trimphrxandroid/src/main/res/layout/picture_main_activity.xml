@@ -24,12 +24,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@color/colorAccent" />
-
+                android:theme="@style/ToolbarTheme"
+                android:background="@color/toor_bg" />
         </FrameLayout>
 
     </android.support.design.widget.AppBarLayout>
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation"
